@@ -1,5 +1,7 @@
 # CKEditor for rails asset pipeline
 
+## This fork removes plugins and stylesheets not used by KPCC.
+
 [CKEditor](http://ckeditor.com/) is a library for WYSIWYG editor to be used inside web pages.
 
 The `ckeditor_rails` gem integrates the `CKEditor` with the Rails asset pipeline.
