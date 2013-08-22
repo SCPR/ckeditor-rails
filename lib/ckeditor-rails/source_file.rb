@@ -5,21 +5,14 @@ class SourceFile < Thor
   source_root 'tmp'
 
   desc 'fetch VERSION', 'fetch source files from http://ckeditor.com/'
-  def fetch version
-    download_url = file_url version
-    archive_file = "#{source_root}/#{filename(version)}"
-
+  def fetch source_file
     in_root do
-      say_status '       fetch', archive_file, :green
-      get download_url, archive_file
-      if File.exist? archive_file
+      if File.exist? source_file
         FileUtils.mkdir_p source_root
-        extract archive_file, source_root
-        FileUtils.rm_rf archive_file
+        extract source_file, source_root
+        FileUtils.rm_rf source_file
       end
     end
-
-    bump_version version
   end
 
   desc 'move', 'move source files'
@@ -46,25 +39,8 @@ class SourceFile < Thor
 
   protected
 
-  def file_url version
-    "http://download.cksource.com/CKEditor/CKEditor/CKEditor%20#{version}/#{filename(version)}"
-  end
-
-  def filename version
-    "ckeditor_#{version}_full.tar.gz"
-  end
-
   def extract file_path, output_path
     system "tar -x -f '#{file_path}' -C '#{output_path}' ckeditor"
-  end
-
-  def bump_version version
-    return unless File.exist? source_root
-    inside 'lib' do
-      gsub_file 'ckeditor-rails/version.rb', /EDITOR_VERSION\s=\s'(\d|\.)+'$/ do |match|
-        %Q{EDITOR_VERSION = '#{version}'}
-      end
-    end
   end
 
   def copy_files_in_source_root

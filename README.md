@@ -1,6 +1,10 @@
 # CKEditor for rails asset pipeline
 
-## This fork removes plugins and stylesheets not used by KPCC.
+## This Fork
+This fork contains a custom download of CKEditor with the plugins used by KPCC.
+To update, download the custom file and place it in the "tmp" directory of this repository, then run `rake update_ckeditor`. The Rakefile has been updated to
+omit the download step.
+
 
 [CKEditor](http://ckeditor.com/) is a library for WYSIWYG editor to be used inside web pages.
 
