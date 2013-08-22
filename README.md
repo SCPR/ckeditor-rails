@@ -2,8 +2,8 @@
 
 ## This Fork
 This fork contains a custom download of CKEditor with the plugins used by KPCC.
-To update, download the custom file and place it in the "tmp" directory of this repository, then run `rake update_ckeditor`. The Rakefile has been updated to
-omit the download step.
+To update, download the custom file, then run `rake update_ckeditor SOURCE=path/to/ckeditor_custom.zip`. The Rakefile has been updated to
+omit the download step, and will instead use the file you've already downloaded.
 
 
 [CKEditor](http://ckeditor.com/) is a library for WYSIWYG editor to be used inside web pages.
